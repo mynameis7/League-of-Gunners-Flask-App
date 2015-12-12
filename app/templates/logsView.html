@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% block content %}
-	<table>
+{% include 'navbar.html' %}
+{% block logs %}
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>Timestamp</th>
@@ -10,12 +11,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for event in logs.data %}
+			{% for event in guild.log.data %}
 				<tr>
 					<td>{{ event.date }}</td>
 					<td>{{ event.category }}</td>
-					<td>{{ event.name }}</td>
-					<td>{{ event.message }}</td>
+					<td>{{ event.true_name }}</td>
+					<td>{{ event.true_message }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>
