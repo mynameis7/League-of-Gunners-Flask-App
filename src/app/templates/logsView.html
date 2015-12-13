@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% include 'navbar.html' %}
+{% include 'irc.html' %}
+{% block logs %}
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Timestamp</th>
+				<th>Category</th>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for event in guild.log.data %}
+				<tr>
+					<td>{{ event.date }}</td>
+					<td>{{ event.category }}</td>
+					<td>{{ event.true_name }}</td>
+					<td>{{ event.true_message }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

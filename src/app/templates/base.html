@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- BEGIN jQuery -->
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<!-- END jQuery -->
+
+		<!-- BEGIN Bootstrap -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<!-- END Bootstrap -->
+
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+		{% if title %}
+		<title>{{ title }}</title>
+		{% else %}
+		<title>League of Gunners</title>
+		{% endif %}
+	</head>
+	<body>
+		<div class="container main">
+			{% block navbar %}
+			{% endblock %}
+			{% block jumbotron %}
+			{% endblock %}
+			{% block content %}
+			{% endblock %}
+			{% block logs %}
+			{% endblock %}
+		</div>
+
+		<div class="irc">
+			<button class="btn btn-default open-close" type="button">Open/Close</button>
+			<iframe src="https://kiwiirc.com/client/irc.kiwiirc.com/?nick=Gunner|?&theme=cli#LeagueOfGunnersIRCChat" style="border:0; width:100%; height:100%;"></iframe>
+		</div>
+	</body>
+</html>

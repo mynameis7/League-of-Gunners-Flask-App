@@ -1,0 +1,11 @@
+{% block jumbotron %}
+	<div class="jumbotron">
+		{% if guild %}
+		<h1> {{ guild.name }} </h1>
+		{% else %}
+		<h1> Guild Name </h1>
+		{% endif %}
+
+		
+	</div>
+{%endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% include 'navbar.html' %}
+{% include 'irc.html' %}
+{% block content %}
+	<div class="container">
+		<h1> {{ guild.name }} </h1>
+
+		<div class="main">
+			<div class="ranks container">
+				{% for rank in ["Guild Master", "Officer", "Veteran", "Member", "Recruit"] %}
+				<div class="rank-box container-fluid">
+					<ul class="list-unstyled"> <h3>{{ rank }}</h3>
+						{% for member in guild.filter_by_rank(rank) %}
+							<li>{{ member.name }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+				{% endfor %}
+			</div>
+			<div class="information">
+				<div class="guild-totals">
+					<table> <h2>Crown Deposits</h2>
+						<tr>
+							<td>Guild Weekly Total</td>
+							<td>{{ guild.get_weekly_total() }}</td>
+						</tr>
+						<tr>
+							<td>Guild Overall Total</td>
+							<td>{{ guild.get_guild_total() }}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
