@@ -9,6 +9,11 @@ try:
     import jsonpickle
 except Exception:
     jsonpickle = None
+
+def load_json_guild(filepath):
+    g = Guild()
+    g.load_from_json(filepath)
+    return g
     
 TAGS = ("Membership", "Treasury", "Storage", "Energy", "Upkeep", "Guild Hall")
 class Event(object):
