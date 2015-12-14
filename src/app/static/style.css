@@ -46,11 +46,18 @@ body {
 	margin: 5px;
 }
 
-
+.open-close {
+	float:right;
+}
 .irc {
 	position: fixed;
 	right: 100px;
-	bottom: 30px;
+	bottom: 0px;
 	width: 30%;
-	height: 50%;
+	height: auto;
+}
+
+#ircWindow {
+	height: 100%;
+	width: 100%;
 }
