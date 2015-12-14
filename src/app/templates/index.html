@@ -3,20 +3,21 @@
 {% include 'irc.html' %}
 {% block content %}
 	<div class="container">
-		<h1> {{ guild.name }} </h1>
+		<h1> {{ name }} </h1>
 
 		<div class="main">
 			<div class="ranks container">
-				{% for rank in ["Guild Master", "Officer", "Veteran", "Member", "Recruit"] %}
+				{% for rank in members %}
 				<div class="rank-box container-fluid">
 					<ul class="list-unstyled"> <h3>{{ rank }}</h3>
-						{% for member in guild.filter_by_rank(rank) %}
+						{% for member in members[rank] %}
 							<li>{{ member.name }}</li>
 						{% endfor %}
 					</ul>
 				</div>
 				{% endfor %}
 			</div>
+			{#<!--
 			<div class="information">
 				<div class="guild-totals">
 					<table> <h2>Crown Deposits</h2>
@@ -30,7 +31,7 @@
 						</tr>
 					</table>
 				</div>
-			</div>
+			</div> -->#}
 		</div>
 	</div>
 {% endblock %}

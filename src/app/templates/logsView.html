@@ -12,12 +12,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for event in guild.log.data %}
+			{% for event in logs %}
 				<tr>
 					<td>{{ event.date }}</td>
 					<td>{{ event.category }}</td>
-					<td>{{ event.true_name }}</td>
-					<td>{{ event.true_message }}</td>
+					<td>{{ event.name }}</td>
+					<td>{{ event.message }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>
