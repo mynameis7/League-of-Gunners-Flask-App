@@ -7,7 +7,7 @@
 
 		<div class="main">
 			<div class="ranks container">
-				{% for rank in members %}
+				{% for rank in ["Guild Master", "Officer", "Veteran", "Member", "Recruit"] %}
 				<div class="rank-box container-fluid">
 					<ul class="list-unstyled"> <h3>{{ rank }}</h3>
 						{% for member in members[rank] %}
