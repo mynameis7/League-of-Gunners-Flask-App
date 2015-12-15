@@ -8,11 +8,12 @@
 		<div class="main">
 			<div class="ranks container">
 				{% for rank in ["Guild Master", "Officer", "Veteran", "Member", "Recruit"] %}
-				<div class="rank-box container-fluid">
-					<ul class="list-unstyled"> <h3>{{ rank }}</h3>
-						{% for member in members[rank] %}
-							<li>{{ member.name }}</li>
-						{% endfor %}
+				<a href="#{{ rank|replace(' ', '_') }}" data-toggle="collapse" aria-controls="{{ rank|replace(' ', '_') }}" aria-expanded="false"> <h3>{{ rank }}</h3> </a>
+				<div class="rank-box container-fluid collapse" id="{{ rank|replace(' ', '_') }}" >
+					<ul class="list-unstyled">
+					{% for member in members[rank] %}
+						<li>{{ member.name }}</li>
+					{% endfor %}
 					</ul>
 				</div>
 				{% endfor %}

@@ -4,6 +4,7 @@ h1 {
 }
 body {
 	padding-top: 70px;
+	font-size: 14px;
 }
 
 .center-pad {
@@ -57,7 +58,51 @@ body {
 	height: auto;
 }
 
+.italics {
+	font-style: italic;
+}
+
 #ircWindow {
 	height: 100%;
+	width: 100%;
+}
+
+.charter-jumbo {
+	/*color: #ffffff;*/
+}
+
+.charter-header {
+	color: #ffcc00;
+	font-size: 18px;
+	font-weight: bold;
+}
+.charter-subheader {
+	/*color: #ffffff;*/
+	font-style: italic;
+	display: block;
+}
+.charter-rank {
+	font-weight: bold;
+	text-decoration: underline;
+	/*color: #ffffff;*/
+}
+.charter-rank-perk {
+	font-style: italic;
+}
+
+.charter-subsection-header {
+	color: #009900;
+	text-decoration: underline;
+}
+
+.charter-section-body {
+	padding: 10px;
+	margin: 2px;
+}
+
+.charter-section a {
+	display: block;
+}
+.charter-section a div {
 	width: 100%;
 }

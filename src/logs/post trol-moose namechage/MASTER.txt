@@ -1,2 +1,0 @@
-"Timestamp","Category","Name","Message"
-"2/20/15 01:00:00 AM","Membership","Xaati","Left the guild. Farewell!"
