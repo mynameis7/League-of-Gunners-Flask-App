@@ -2,7 +2,7 @@
 {% include 'navbar.html' %}
 {% include 'irc.html' %}
 {% block logs %}
-	<table class="table table-hover">
+	<table class="table-responsive table-hover" data-pagination="true" data-height="700" data-toggle="table" data-page-size="25" data-page-list="[10, 25, 100, all]">
 		<thead>
 			<tr>
 				<th>Timestamp</th>
@@ -12,8 +12,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for event in logs %}
-				<tr>
+			{% for i in range(log_len) %}
+				{% set event = logs[i] %}
+				<tr data-index="{{i}}">
 					<td>{{ event.date }}</td>
 					<td>{{ event.category }}</td>
 					<td>{{ event.name }}</td>

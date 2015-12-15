@@ -55,6 +55,7 @@ def logsView():
                                name=base["name"],
                                short_name=base["short"],
                                logs=logs,
+                               log_len=len(logs)
                                )
 
 @app.route('/about')
