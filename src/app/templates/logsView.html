@@ -1,13 +1,11 @@
 {% extends "base.html" %}
-{% include 'navbar.html' %}
-{% include 'irc.html' %}
-{% block logs %}
+{% block content %}
 	<script>
 		$( document ).ready(function() {
-			$("#log-table").removeClass("hide")
+			$("#log-table tbody").removeClass("hide")
 		});
 	</script>
-	<table class="table table-hover hide" data-pagination="true" data-height="700" data-toggle="table" data-page-size="25" data-page-list="[10, 25, 100, all]" id="log-table">
+	<table class="table-responsive table-hover" data-pagination="true" data-height="500" data-toggle="table" data-page-size="25" data-page-list="[10, 25, 100, all]" id="log-table">
 		<thead>
 			<tr>
 				<th>Timestamp</th>
@@ -16,7 +14,7 @@
 				<th>Description</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class="hide">
 			{% set i = 1 %}
 			{% for event in logs: %}
 				{% set i = i+1 %}

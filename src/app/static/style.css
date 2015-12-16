@@ -39,6 +39,9 @@ body {
 .open-close {
 	float:right;
 }
+.main {
+	z-index: 0;
+}
 .irc {
 	position: fixed;
 	right: 100px;
@@ -46,6 +49,7 @@ body {
 	width: 100%;
 	max-width: 500px;
 	height: auto;
+	z-index: 100;
 }
 
 .italics {

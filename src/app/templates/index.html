@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% include 'navbar.html' %}
-{% include 'irc.html' %}
 {% block content %}
 	<div class="container">
 		<h1> {{ name }} </h1>
@@ -9,7 +7,7 @@
 			<div class="ranks container">
 				<div class="panel-group" id="membership-box" role="tablist" aria-multiselectable="true">
 					{% for rank in ["Guild Master", "Officer", "Veteran", "Member", "Recruit"] %}
-						<div class="panel panel-default">
+						<div class="panel panel-secondary">
 						  	<div class="panel-heading" role="tab" id="{{ rank|replace(' ', '_') }}-heading">
 								<h3 class="panel-title">
 									<a role="button" data-toggle="collapse" data-parent="#membership-box" href="#{{ rank|replace(' ', '_') }}" aria-expanded="true" aria-controls="{{ rank|replace(' ', '_') }}">
@@ -21,7 +19,13 @@
 								<div class="panel-body">
 									<div class="row">
 										{% for member in members[rank] %}
-											<div class="col-md-6 col-xs-6">{{ member.name }}</div>
+											<div class="col-md-6 col-xs-6">
+												{% if current_user.is_authenticated %}
+													<a href="{{ url_for('profile', name=member.name) }}">{{ member.name }}</a>
+												{% else %}
+													{{member.name}}
+												{% endif %}
+											</div>
 										{% endfor %}
 									</div>
 								</div>

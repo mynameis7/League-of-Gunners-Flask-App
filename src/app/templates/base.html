@@ -11,6 +11,7 @@
 			<!-- BEGIN Bootstrap -->
 			<!-- Latest compiled and minified CSS -->
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
 			<!-- Optional theme -->
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 			<!-- Latest compiled and minified JavaScript -->
@@ -22,7 +23,9 @@
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.css" crossorigin="anonymous">
 			<!-- END Bootstrap Tables -->
 			
-			<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+			<link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
+			<link rel="stylesheet" href="{{ url_for('static', filename='darkly.min.css') }}">
+
 			{% if title %}
 			<title>{{ title }}</title>
 			{% else %}
@@ -32,21 +35,22 @@
 	</head>
 	<body>
 		<div class="container-fluid">
+			{% include "navbar.html" %}
 			<div class="main">
-				{% block navbar %}
-				{% endblock %}
 				{% block jumbotron %}
 				{% endblock %}
 				{% block content %}
-				{% endblock %}
-				{% block logs %}
 				{% endblock %}
 			</div>
 
 			<div class="irc">
 				<button class="btn btn-default open-close" role="button" data-toggle="collapse" data-target="#ircWindow" aria-expanded="false" aria-controls="ircWindow" type="button">Open/Close</button>
 				<div class="collapse" id="ircWindow">
+					{% if current_user.is_authenticated %}
+					<iframe seamless="seamless" src="https://kiwiirc.com/client/irc.kiwiirc.com/?nick={{ current_user.name }}&theme=cli#LeagueOfGunnersIRCChat" style="border:0; width:100%; height:410px;"></iframe>
+					{% else %}
 					<iframe seamless="seamless" src="https://kiwiirc.com/client/irc.kiwiirc.com/?nick=Gunner|?&theme=cli#LeagueOfGunnersIRCChat" style="border:0; width:100%; height:410px;"></iframe>
+					{% endif %}
 				</div>
 			</div>
 		</div>
