@@ -73,10 +73,13 @@ def about():
 def load_user(id):
     return models.Guildmate.query.get(int(id))
 
-
 @app.before_request
 def before_request():
     g.user = current_user
+
+@app.route('/unauthorized')
+def unauthorized():
+    return redirect(url_for("index"))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -90,18 +93,35 @@ def login():
                                 short_name=base["short"])
     if request.method == "POST":
         username = request.form["username"]
+        password = request.form["password"]
+        remember = False
+        if 'remember' in request.form:
+            remember = True
         user = models.Guildmate.query.filter(models.Guildmate.name == username).first()
-        login_user(user)
-        flash('logged in successfully')
-        next = request.args.get('next')
-        print next
-        #if not next_is_valid(next):
-        #    return flask.abort(400)
-        return redirect( next or url_for('index'))
-    return(url_for('index'))
+        if user is not None:
+            login_user(user, remember=remember)
+            flash('logged in successfully')
+            next = request.args.get('next')
+            #if not next_is_valid(next):
+            #    return flask.abort(400)
+            return redirect( next or url_for('index'))
+        else:
+            return redirect(url_for('unauthorized'))
+    return redirect(url_for('index'))
 
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for("index"))
+
+@app.route("/member/<name>")
+@login_required
+def profile(name):
+    user = models.Guildmate.query.filter(models.Guildmate.name == name).first()
+    base = get_base_vars()
+    return render_template("member.html",
+                            itle=name,
+                            name=base["name"],
+                            short_name=base["short"],
+                            user=user)
