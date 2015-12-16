@@ -13,24 +13,13 @@ body {
 	overflow: hidden;
 }
 .ranks {
-	width: 30%;
-	float: left;
+	width: 100%;
 }
 
-.rank-box {
-	background: #aaaaaa;
-	padding: 10px;
-	border: 1px solid #aaaaaa;
-	border-radius: 5px;
-	max-width: 300px;
-	margin-bottom: 10px;
+.ranks a {
+	display: block;
 }
 
-.rank-box ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
 .information {
 	width: 69%;
 	float: right;
@@ -54,7 +43,8 @@ body {
 	position: fixed;
 	right: 100px;
 	bottom: 0px;
-	width: 30%;
+	width: 100%;
+	max-width: 500px;
 	height: auto;
 }
 
@@ -105,4 +95,8 @@ body {
 }
 .charter-section a div {
 	width: 100%;
+}
+
+.hide {
+	display: none;
 }

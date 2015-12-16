@@ -7,16 +7,28 @@
 
 		<div class="main">
 			<div class="ranks container">
-				{% for rank in ["Guild Master", "Officer", "Veteran", "Member", "Recruit"] %}
-				<a href="#{{ rank|replace(' ', '_') }}" data-toggle="collapse" aria-controls="{{ rank|replace(' ', '_') }}" aria-expanded="false"> <h3>{{ rank }}</h3> </a>
-				<div class="rank-box container-fluid collapse" id="{{ rank|replace(' ', '_') }}" >
-					<ul class="list-unstyled">
-					{% for member in members[rank] %}
-						<li>{{ member.name }}</li>
+				<div class="panel-group" id="membership-box" role="tablist" aria-multiselectable="true">
+					{% for rank in ["Guild Master", "Officer", "Veteran", "Member", "Recruit"] %}
+						<div class="panel panel-default">
+						  	<div class="panel-heading" role="tab" id="{{ rank|replace(' ', '_') }}-heading">
+								<h3 class="panel-title">
+									<a role="button" data-toggle="collapse" data-parent="#membership-box" href="#{{ rank|replace(' ', '_') }}" aria-expanded="true" aria-controls="{{ rank|replace(' ', '_') }}">
+										{{ rank }}
+									</a>
+								</h3>
+							</div>
+							<div id="{{ rank|replace(' ', '_') }}" class="panel-collapse collapse {% if rank=='Guild Master' %}{{'in'}}{% endif %}" role="tabpanel" aria-labelledby="{{ rank|replace(' ', '_') }}-heading">
+								<div class="panel-body">
+									<div class="row">
+										{% for member in members[rank] %}
+											<div class="col-md-6 col-xs-6">{{ member.name }}</div>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
 					{% endfor %}
-					</ul>
 				</div>
-				{% endfor %}
 			</div>
 			{#<!--
 			<div class="information">
