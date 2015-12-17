@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, models, lm
-
+from datetime import datetime as dt
 
 def get_base_vars():
         name = models.Guild.query.all()[0].name
@@ -120,8 +120,17 @@ def logout():
 def profile(name):
     user = models.Guildmate.query.filter(models.Guildmate.name == name).first()
     base = get_base_vars()
+    joindate = user.join_date.strftime("%m-%d-%Y %H:%M")
+    days_in = (dt.now() - user.join_date).days
+    total_d = sum( [ dep.value for dep in user.crown_deposits ])
+    logs = models.Logs.query.all()
+    userlogs = [log for log in logs if log.current_name == name]
     return render_template("member.html",
                             itle=name,
                             name=base["name"],
                             short_name=base["short"],
-                            user=user)
+                            user=user,
+                            user_joindate=joindate,
+                            days=days_in,
+                            total_crowns=total_d,
+                            logs=userlogs)

@@ -1,6 +1,99 @@
 {% extends "base.html" %}
 {% block content %}
 	<div class="container">
-		{{ user.name }}
+		<h2>{{ user.name }}</h2>
+		<div class="row">
+			<div class="col-md-4 user-stats">
+				<h3>Summary Data</h3>
+				<table class="table">
+					<tr>
+						<td>Rank:</td><td>{{ user.rank }}</td>
+					</tr>
+					<tr>
+						<td>Join date:</td><td>{{ user_joindate }}</td>
+					</tr>
+					<tr>
+						<td>Days in guild:</td><td>{{ days }}</td>
+					</tr>
+					<tr>
+						<td>Total deposits:</td><td>{{ total_crowns }}</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-4 user-crowns">
+				<h3>Crown Deposits</h3>
+				<table data-toggle="table">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set i = 0 %}
+						{% for deposit in user.crown_deposits %}
+							{% set i = i + 1 %}
+							<tr data-index="{{i}}">
+								<td>{{ deposit.date }}</td>
+								<td>{{ deposit.value }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-4 user-energy">
+				<h3>Energy Deposits</h3>
+				<table data-toggle="table">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set i = 0 %}
+						{% for deposit in user.energy_deposits %}
+							{% set i = i + 1 %}
+							<tr data-index="{{i}}">
+								<td>{{ deposit.date }}</td>
+								<td>{{ deposit.value }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="clearfix spacer"></div>
+		<div class="row">
+			<div class="col-md-12">
+				<script>
+					$( document ).ready(function() {
+						$("#log-table tbody").removeClass("hide")
+					});
+				</script>
+				<table class="table-responsive table-hover" data-pagination="true" data-height="300" data-toggle="table" data-page-size="10" data-page-list="[10, 25, 100, all]" id="log-table">
+					<thead>
+						<tr>
+							<th>Timestamp</th>
+							<th>Category</th>
+							<th>Name</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody class="hide">
+						{% set i = 0 %}
+						{% for event in logs %}
+							{% set i = i+1 %}
+							<tr data-index="{{i}}">
+								<td>{{ event.date }}</td>
+								<td>{{ event.category }}</td>
+								<td>{{ event.name }}</td>
+								<td>{{ event.message }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 {% endblock %}

@@ -9,7 +9,7 @@ class Guildmate(db.Model):
     join_date = db.Column(db.DateTime)
     crown_deposits = db.relationship('CrownDeposits', backref='guildmate', lazy='select')
     energy_deposits = db.relationship('EnergyDeposits', backref='guildmate', lazy='select')
-    
+
     @property
     def is_authenticated(self):
         return True
@@ -45,6 +45,11 @@ class Logs(db.Model):
     new_name = db.Column(db.String(18))
     new_message = db.Column(db.String(512))
 
+    @property
+    def current_name(self):
+        if self.new_name:
+            return self.new_name
+        return self.name
 
 class Renames(db.Model):
     __tablename__ = "Renames"

@@ -5,7 +5,7 @@
 			$("#log-table tbody").removeClass("hide")
 		});
 	</script>
-	<table class="table-responsive table-hover" data-pagination="true" data-height="500" data-toggle="table" data-page-size="25" data-page-list="[10, 25, 100, all]" id="log-table">
+	<table class="table-responsive table-hover" data-pagination="true" data-height="600" data-toggle="table" data-page-size="25" data-page-list="[10, 25, 100, all]" id="log-table">
 		<thead>
 			<tr>
 				<th>Timestamp</th>
@@ -15,7 +15,7 @@
 			</tr>
 		</thead>
 		<tbody class="hide">
-			{% set i = 1 %}
+			{% set i = 0 %}
 			{% for event in logs: %}
 				{% set i = i+1 %}
 				<tr data-index="{{i}}">

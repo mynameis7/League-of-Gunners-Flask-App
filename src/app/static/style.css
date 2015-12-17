@@ -104,3 +104,7 @@ body {
 .hide {
 	display: none;
 }
+
+.spacer {
+	height: 10px;
+}
