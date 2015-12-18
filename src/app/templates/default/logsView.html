@@ -1,10 +1,7 @@
-{% extends "base.html" %}
+{% extends template + "base.html" %}
 {% block content %}
-	<script>
-		$( document ).ready(function() {
-			$("#log-table tbody").removeClass("hide")
-		});
-	</script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.js"></script>
+
 	<table class="table-responsive table-hover" data-pagination="true" data-height="600" data-toggle="table" data-page-size="25" data-page-list="[10, 25, 100, all]" id="log-table">
 		<thead>
 			<tr>
@@ -14,7 +11,7 @@
 				<th>Description</th>
 			</tr>
 		</thead>
-		<tbody class="hide">
+		<tbody>
 			{% set i = 0 %}
 			{% for event in logs: %}
 				{% set i = i+1 %}
@@ -27,4 +24,7 @@
 			{% endfor %}
 		</tbody>
 	</table>
+
+	{# <script src="{{ url_for('static', filename='bootstrap-table.js') }}"></script> #}
+
 {% endblock %}

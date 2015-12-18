@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends template + "base.html" %}
 {% block content %}
 	<div class="container">
 		<h2>{{ user.name }}</h2>
@@ -7,7 +7,7 @@
 				<h3>Summary Data</h3>
 				<table class="table">
 					<tr>
-						<td>Rank:</td><td>{{ user.rank }}</td>
+						<td>Rank:</td><td>{{ get_user_rank(user) }}</td>
 					</tr>
 					<tr>
 						<td>Join date:</td><td>{{ user_joindate }}</td>
@@ -96,4 +96,5 @@
 			</div>
 		</div>
 	</div>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.js"></script>
 {% endblock %}

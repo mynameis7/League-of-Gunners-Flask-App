@@ -28,20 +28,29 @@ def get_members_by_rank():
                 "Recruit": recruit}
         return mems
 
+ranks = {0: "Recruit",
+         1: "Member",
+         2: "Veteran",
+         3: "Officer",
+         4: "Guild Master"}
 
+@app.template_global()
+def get_user_rank(user):
+    return ranks[user.rank_val]
 
-
+template="default/"
 
 @app.route('/')
 @app.route('/index')
 def index():
     base = get_base_vars()
     mems = get_members_by_rank()
-    return render_template("index.html",
+    return render_template(template + "index.html",
                 title='Home',
                                 name=base["name"],
                                 short_name=base["short"],
-                                members=mems
+                                members=mems,
+                                template=template
                 )
 
 @app.route('/viewlogs')
@@ -52,21 +61,23 @@ def logsView():
         logs = models.Logs.query.all()
         logs.reverse()
         base = get_base_vars()
-        return render_template("logsView.html",
+        return render_template(template + "logsView.html",
                                title='View Logs',
                                name=base["name"],
                                short_name=base["short"],
                                logs=logs,
-                               log_len=len(logs)
+                               log_len=len(logs),
+                               template=template
                                )
 
 @app.route('/about')
 def about():
         base = get_base_vars()
-        return render_template("about.html",
+        return render_template(template + "about.html",
                                title="Charter",
                                name=base["name"],
-                               short_name=base["short"])
+                               short_name=base["short"],
+                               template=template)
 
 
 @lm.user_loader
@@ -87,10 +98,11 @@ def login():
         return redirect(url_for('index'))
     if request.method == "GET":
         base = get_base_vars()
-        return render_template('login.html',
+        return render_template(template + 'login.html',
                                 title="login",
                                 name=base["name"],
-                                short_name=base["short"])
+                                short_name=base["short"],
+                                template = template)
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -125,7 +137,7 @@ def profile(name):
     total_d = sum( [ dep.value for dep in user.crown_deposits ])
     logs = models.Logs.query.all()
     userlogs = [log for log in logs if log.current_name == name]
-    return render_template("member.html",
+    return render_template(template + "member.html",
                             itle=name,
                             name=base["name"],
                             short_name=base["short"],
@@ -133,4 +145,5 @@ def profile(name):
                             user_joindate=joindate,
                             days=days_in,
                             total_crowns=total_d,
-                            logs=userlogs)
+                            logs=userlogs,
+                            template=template)

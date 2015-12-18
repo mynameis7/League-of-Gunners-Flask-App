@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		{% block head %}
-			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!-- BEGIN jQuery -->
 			<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 			<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 			<!-- END jQuery -->
 
+			<script src="{{ url_for('static', filename='turbolinks.js') }}")> </script>
+			<script>
+				function initialize() {
+					if( $(document).title == "")
+					$.getScript("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.js", function() {
+						alert("loaded")
+					});
+					console.log("Page Changed")
+				}
+				$(document).on("page:change", initialize)
+				console.log("Page started")
+			</script>
 			<!-- BEGIN Bootstrap -->
 			<!-- Latest compiled and minified CSS -->
 			<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
@@ -34,17 +46,16 @@
 		{% endblock %}
 	</head>
 	<body>
-		{% include "navbar.html" %}
+		{% include template + "navbar.html" %}
 		<div class="container-fluid">
-			<div class="clear-fix"></div>
-			<div class="main">
+			<div class="main" id="main-content">
 				{% block jumbotron %}
 				{% endblock %}
 				{% block content %}
 				{% endblock %}
 			</div>
 
-			<div class="irc">
+ 			<div class="irc" data-turbolinks-permanent="true" id="IRC">
 				<button class="btn btn-default open-close" role="button" data-toggle="collapse" data-target="#ircWindow" aria-expanded="false" aria-controls="ircWindow" type="button">Open/Close</button>
 				<div class="collapse" id="ircWindow">
 					{% if current_user.is_authenticated %}

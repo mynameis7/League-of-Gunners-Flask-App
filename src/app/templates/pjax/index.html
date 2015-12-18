@@ -1,0 +1,54 @@
+{% extends template + "base.html" %}
+{% block content %}
+	<div class="container">
+		<h1> {{ name }} </h1>
+
+		<div>
+			<div class="ranks container">
+				<div class="panel-group" id="membership-box" role="tablist" aria-multiselectable="true">
+					{% for rank in ["Guild Master", "Officer", "Veteran", "Member", "Recruit"] %}
+						<div class="panel panel-secondary">
+						  	<div class="panel-heading" role="tab" id="{{ rank|replace(' ', '_') }}-heading">
+								<h3 class="panel-title">
+									<a role="button" data-toggle="collapse" data-parent="#membership-box" href="#{{ rank|replace(' ', '_') }}" aria-expanded="true" aria-controls="{{ rank|replace(' ', '_') }}">
+										{{ rank }}
+									</a>
+								</h3>
+							</div>
+							<div id="{{ rank|replace(' ', '_') }}" class="panel-collapse collapse {% if rank=='Guild Master' %}{{'in'}}{% endif %}" role="tabpanel" aria-labelledby="{{ rank|replace(' ', '_') }}-heading">
+								<div class="panel-body">
+									<div class="row">
+										{% for member in members[rank] %}
+											<div class="col-md-6 col-xs-6">
+												{% if current_user.is_authenticated %}
+													<a href="{{ url_for('profile', name=member.name) }}">{{ member.name }}</a>
+												{% else %}
+													{{member.name}}
+												{% endif %}
+											</div>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			{#<!--
+			<div class="information">
+				<div class="guild-totals">
+					<table> <h2>Crown Deposits</h2>
+						<tr>
+							<td>Guild Weekly Total</td>
+							<td>{{ guild.get_weekly_total() }}</td>
+						</tr>
+						<tr>
+							<td>Guild Overall Total</td>
+							<td>{{ guild.get_guild_total() }}</td>
+						</tr>
+					</table>
+				</div>
+			</div> -->#}
+		</div>
+	</div>
+{% endblock %}
