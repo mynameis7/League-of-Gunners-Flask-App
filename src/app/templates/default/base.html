@@ -55,7 +55,7 @@
 				{% endblock %}
 			</div>
 
- 			<div class="irc" data-turbolinks-permanent="true" id="IRC">
+ 			<div class="irc hidden-xs" data-turbolinks-permanent="true" id="IRC">
 				<button class="btn btn-default open-close" role="button" data-toggle="collapse" data-target="#ircWindow" aria-expanded="false" aria-controls="ircWindow" type="button">Open/Close</button>
 				<div class="collapse" id="ircWindow">
 					{% if current_user.is_authenticated %}
