@@ -1,54 +1,79 @@
 {% extends template + "base.html" %}
+{% block head %}
+	{{ super() }}
+{% endblock %}
+{% include template + "jumbotron.html" %}
 {% block content %}
 	<div class="container">
-		<h1> {{ name }} </h1>
-
-		<div>
-			<div class="ranks container">
-				<div class="panel-group" id="membership-box" role="tablist" aria-multiselectable="true">
-					{% for rank in ["Guild Master", "Officer", "Veteran", "Member", "Recruit"] %}
-						<div class="panel panel-secondary">
-						  	<div class="panel-heading" role="tab" id="{{ rank|replace(' ', '_') }}-heading">
-								<h3 class="panel-title">
-									<a role="button" data-toggle="collapse" data-parent="#membership-box" href="#{{ rank|replace(' ', '_') }}" aria-expanded="true" aria-controls="{{ rank|replace(' ', '_') }}">
-										{{ rank }}
-									</a>
-								</h3>
-							</div>
-							<div id="{{ rank|replace(' ', '_') }}" class="panel-collapse collapse {% if rank=='Guild Master' %}{{'in'}}{% endif %}" role="tabpanel" aria-labelledby="{{ rank|replace(' ', '_') }}-heading">
-								<div class="panel-body">
-									<div class="row">
-										{% for member in members[rank] %}
-											<div class="col-md-6 col-xs-6">
-												{% if current_user.is_authenticated %}
-													<a href="{{ url_for('profile', name=member.name) }}">{{ member.name }}</a>
-												{% else %}
-													{{member.name}}
-												{% endif %}
-											</div>
-										{% endfor %}
+		<div class="row">
+			<div class="sideblock col-md-3">
+				<div class="ranks">
+					<h2>Membership</h2>
+					<div class="panel-group" id="membership-box" role="tablist" aria-multiselectable="true">
+						{% for rank in ["Guild Master", "Officer", "Veteran", "Member", "Recruit"] %}
+							<div class="panel panel-primary">
+							  	<div class="panel-heading" role="tab" id="{{ rank|replace(' ', '_') }}-heading">
+									<h3 class="panel-title">
+										<a role="button" data-toggle="collapse" data-parent="#membership-box" href="#{{ rank|replace(' ', '_') }}" aria-expanded="true" aria-controls="{{ rank|replace(' ', '_') }}">
+											{{ rank }}
+										</a>
+									</h3>
+								</div>
+								<div id="{{ rank|replace(' ', '_') }}" class="panel-collapse collapse {% if rank=='Guild Master' %}{{'in'}}{% endif %}" role="tabpanel" aria-labelledby="{{ rank|replace(' ', '_') }}-heading">
+									<div class="panel-body">
+										<div class="row">
+											{% for member in members[rank] %}
+												<div class="col-md-6 col-xs-6">
+													{% if current_user.is_authenticated %}
+														<a href="{{ url_for('profile', name=member.name) }}">{{ member.name }}</a>
+													{% else %}
+														{{member.name}}
+													{% endif %}
+												</div>
+											{% endfor %}
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					{% endfor %}
+						{% endfor %}
+					</div>
 				</div>
 			</div>
-			{#<!--
-			<div class="information">
-				<div class="guild-totals">
-					<table> <h2>Crown Deposits</h2>
-						<tr>
-							<td>Guild Weekly Total</td>
-							<td>{{ guild.get_weekly_total() }}</td>
-						</tr>
-						<tr>
-							<td>Guild Overall Total</td>
-							<td>{{ guild.get_guild_total() }}</td>
-						</tr>
-					</table>
+			<div class="mainblock col-md-6">
+				<div class="news">
+					<h2 class=""> News Block </h2>
+					{% if news %}
+						{% for entry in news %}
+							<div class="news-content">
+								<hr>
+								<h3 class="news-header">{{ entry['title'] }}</h2>
+								<div class="content">
+									{{ entry.entry|safe }}
+								</div> 
+							</div>
+						{% endfor %}
+					{% else %}
+						<h2 class=""> News Block </h2>
+						<div class="news-content">
+							Content
+						</div>
+					{% endif %}
+
 				</div>
-			</div> -->#}
+			</div>
+			<div class="sideblock col-md-3">
+				<div class="links">
+					<h2>Additional Links</h2>
+					<div>
+						<ul class="list-unstyled">
+							<li><a href="https://logunners.shivtr.com">The main site</a></li>
+							<li><a href="http://logunners.blogspot.com">The old site</a></li>
+							<li><a href="http://wiki.spiralknights.com/League_of_Gunners_(Guild)">The wiki</a></li>
+							<li><a href="http://forums.spiralknights.com/en/node/69063">The Recruitment Forums (We don't use this anymore)</a></li>
+						</ul>
+					</div> 
+				</div>
+			</div>
 		</div>
 	</div>
 {% endblock %}

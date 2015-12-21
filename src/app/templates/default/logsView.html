@@ -1,6 +1,12 @@
 {% extends template + "base.html" %}
-{% block content %}
+{% block head %}
+	{{ super() }}
+	<!-- Bootstrap Tables -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.css" crossorigin="anonymous">
+	<!-- END Bootstrap Tables -->
+{% endblock %}
+{% block content %}
 
 	<table class="table-responsive table-hover" data-pagination="true" data-height="600" data-toggle="table" data-page-size="25" data-page-list="[10, 25, 100, all]" id="log-table">
 		<thead>

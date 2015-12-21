@@ -2,6 +2,8 @@ from flask import render_template, flash, redirect, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, models, lm
 from datetime import datetime as dt
+import requests
+from postmarkup import render_bbcode
 
 def get_base_vars():
         name = models.Guild.query.all()[0].name
@@ -45,12 +47,20 @@ template="default/"
 def index():
     base = get_base_vars()
     mems = get_members_by_rank()
+    news = requests.get("http://logunners.shivtr.com/news_entries.json")
+    print type(news.json())
+    entries = news.json()["news_entries"]
+    for i in xrange(len(entries)):
+        entry = entries[i]
+        entry["entry"] = render_bbcode(entry["entry"])
+    print len(entries)
     return render_template(template + "index.html",
                 title='Home',
                                 name=base["name"],
                                 short_name=base["short"],
                                 members=mems,
-                                template=template
+                                template=template,
+                                news=entries
                 )
 
 @app.route('/viewlogs')
