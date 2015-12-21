@@ -47,7 +47,8 @@ template="default/"
 def index():
     base = get_base_vars()
     mems = get_members_by_rank()
-    news = requests.get("http://logunners.shivtr.com/news_entries.json")
+    #news = requests.get("http://logunners.shivtr.com/news_entries.json")
+    news = requests.get("https://raw.githubusercontent.com/mynameis7/League-of-Gunners-Flask-App/master/src/app/static/news_entries.json")
     print type(news.json())
     entries = news.json()["news_entries"]
     for i in xrange(len(entries)):
