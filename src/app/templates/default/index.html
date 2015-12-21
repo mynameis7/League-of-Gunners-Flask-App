@@ -46,7 +46,8 @@
 						{% for entry in news %}
 							<div class="news-content">
 								<hr>
-								<h3 class="news-header">{{ entry['title'] }} <small>{{ entry["date"] }}</small></h3>
+								<h3 class="news-header">{{ entry.title }} <small>{{ entry.date }}</small></h3>
+								<h5>{{ member_ids[entry.member_id] }}</h5>
 								<div class="content">
 									{{ entry.entry|safe }}
 								</div>

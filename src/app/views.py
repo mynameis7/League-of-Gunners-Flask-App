@@ -50,7 +50,8 @@ def index():
     #news = requests.get("http://logunners.shivtr.com/news_entries.json")
     news = requests.get("https://raw.githubusercontent.com/mynameis7/League-of-Gunners-Flask-App/master/src/app/static/news_entries.json")
     print type(news.json())
-    entries = news.json()["news_entries"]
+    news_json = news.json()
+    entries = news_json["news_entries"]
     for i in xrange(len(entries)):
         entry = entries[i]
         entry["entry"] = render_bbcode(entry["entry"])
@@ -65,7 +66,8 @@ def index():
                                 short_name=base["short"],
                                 members=mems,
                                 template=template,
-                                news=entries
+                                news=entries,
+                                member_ids=news_json["members"]
                 )
 
 @app.route('/viewlogs')
