@@ -54,6 +54,10 @@ def index():
     for i in xrange(len(entries)):
         entry = entries[i]
         entry["entry"] = render_bbcode(entry["entry"])
+        date = entry["created_at"]
+        date = dt.strptime(date[0:-6], "%Y-%m-%dT%H:%M:%S.%f")
+        date = date.strftime("%b %d, %Y")
+        entry["date"] = date
     print len(entries)
     return render_template(template + "index.html",
                 title='Home',
