@@ -8,7 +8,7 @@ for p in sys.path:
 from LogAnalyzer import *
 from datetime import datetime
 g = Guild()
-g.load_from_json("League_of_Gunners.json-guild")
+g.load_from_json("League of Gunners.json-guild")
 
 i = 0
 for m in g.data.values():

@@ -1,110 +1,145 @@
-h1 {
-	font-size: 100px;
-	font-style: italic;
-}
-body {
-	padding-top: 70px;
-	font-size: 14px;
+h1
+{
+    font-size: 100px;
+    font-style: italic;
 }
 
-.center-pad {
-	max-width: 960px;
-	margin: 0 auto;
-	overflow: hidden;
-}
-.ranks {
-	width: 100%;
+body
+{
+    font-size: 14px;
+
+    padding-top: 70px;
 }
 
-.ranks a {
-	display: block;
+.center-pad
+{
+    overflow: hidden;
+
+    max-width: 960px;
+    margin: 0 auto;
 }
 
-.information {
-	width: 69%;
-	float: right;
-	background: #aaaaaa;
-	border: 1px solid #aaaaaa;
-	border-radius: 5px;
-}
-.guild-totals {
-	padding: 10px;
+.ranks
+{
+    width: 100%;
 }
 
-.guild-totals table td{
-	padding: 5px;
-	margin: 5px;
+.ranks a
+{
+    display: block;
 }
 
-.open-close {
-	float:right;
+.information
+{
+    float: right;
+
+    width: 69%;
+
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    background: #aaa;
 }
-.main {
-	z-index: 0;
-}
-.irc {
-	position: fixed;
-	right: 100px;
-	bottom: 0px;
-	width: 100%;
-	max-width: 500px;
-	height: auto;
-	z-index: 100;
+.guild-totals
+{
+    padding: 10px;
 }
 
-.italics {
-	font-style: italic;
+.guild-totals table td
+{
+    margin: 5px;
+    padding: 5px;
 }
 
-#ircWindow {
-	height: 100%;
-	width: 100%;
+.open-close
+{
+    float: right;
+}
+.main
+{
+    z-index: 0;
+}
+.irc
+{
+    position: fixed;
+    z-index: 100;
+    right: 100px;
+    bottom: 0;
+
+    width: 100%;
+    max-width: 500px;
+    height: auto;
 }
 
-.charter-jumbo {
-	/*color: #ffffff;*/
+.italics
+{
+    font-style: italic;
 }
 
-.charter-header {
-	color: #ffcc00;
-	font-size: 18px;
-	font-weight: bold;
-}
-.charter-subheader {
-	/*color: #ffffff;*/
-	font-style: italic;
-	display: block;
-}
-.charter-rank {
-	font-weight: bold;
-	text-decoration: underline;
-	/*color: #ffffff;*/
-}
-.charter-rank-perk {
-	font-style: italic;
+#ircWindow
+{
+    width: 100%;
+    height: 100%;
 }
 
-.charter-subsection-header {
-	color: #009900;
-	text-decoration: underline;
+.charter-jumbo
+{
+    /*color: #ffffff;*/
 }
 
-.charter-section-body {
-	padding: 10px;
-	margin: 2px;
+.charter-header
+{
+    font-size: 18px;
+    font-weight: bold;
+
+    color: #fc0;
+}
+.charter-subheader
+{
+    /*color: #ffffff;*/
+    font-style: italic;
+
+    display: block;
+}
+.charter-rank
+{
+    font-weight: bold;
+
+    text-decoration: underline;
+    /*color: #ffffff;*/
+}
+.charter-rank-perk
+{
+    font-style: italic;
 }
 
-.charter-section a {
-	display: block;
-}
-.charter-section a div {
-	width: 100%;
+.charter-subsection-header
+{
+    text-decoration: underline;
+
+    color: #090;
 }
 
-.hide {
-	opacity: 1;
+.charter-section-body
+{
+    margin: 2px;
+    padding: 10px;
 }
 
-.spacer {
-	height: 10px;
+.charter-section a
+{
+    display: block;
+}
+.charter-section a div
+{
+    width: 100%;
+}
+
+.hide
+{
+    opacity: 1;
+}
+
+.spacer
+{
+    height: 10px;
 }

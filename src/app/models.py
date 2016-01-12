@@ -50,7 +50,7 @@ class Logs(db.Model):
         if self.new_name:
             return self.new_name
         return self.name
-
+        
 class Renames(db.Model):
     __tablename__ = "Renames"
     id = db.Column(db.Integer, primary_key=True)
